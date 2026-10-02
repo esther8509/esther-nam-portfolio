@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Esther Nam | Product Designer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF6EF;
+    --bg-elevated: #F1EAE0;
+    --text: #2E2820;
+    --text-dim: #6B6459;
+    --red: #C22A3E;
+    --red-soft: rgba(194,42,62,0.12);
+    --olive: #6E7248;
+    --olive-soft: rgba(110,114,72,0.14);
+    --pink: #E8789E;
+    --maroon: #7A2A34;
+    --chain: #B8935A;
+    --chain-soft: rgba(184,147,90,0.35);
+    --line: rgba(26,23,20,0.14);
+    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'Space Mono', 'SF Mono', Consolas, monospace;
+    --accent: var(--olive);
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140F;
+    --bg-elevated: #211C15;
+    --text: #F5EFE4;
+    --text-dim: #A79C8B;
+    --red: #E85D6E;
+    --red-soft: rgba(232,93,110,0.16);
+    --olive: #9CA173;
+    --olive-soft: rgba(156,161,115,0.16);
+    --pink: #F0A2BE;
+    --maroon: #B5545F;
+    --chain: #D4A868;
+    --chain-soft: rgba(212,168,104,0.35);
+    --line: rgba(245,239,228,0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17140F;
+      --bg-elevated: #211C15;
+      --text: #F5EFE4;
+      --text-dim: #A79C8B;
+      --red: #E85D6E;
+      --red-soft: rgba(232,93,110,0.16);
+      --olive: #9CA173;
+      --olive-soft: rgba(156,161,115,0.16);
+      --pink: #F0A2BE;
+      --maroon: #B5545F;
+      --chain: #D4A868;
+      --chain-soft: rgba(212,168,104,0.35);
+      --line: rgba(245,239,228,0.16);
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    cursor: url("assets/images/index-01.svg") 30 30, auto;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--olive-soft); color: var(--text); }
+  :focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 720px) { .wrap { padding: 0 22px; } }
+
+  /* ---- ink mark motif (original abstract mark, not a copy of any specific artwork) ---- */
+  .ink-mark { display: inline-block; flex-shrink: 0; }
+  .ink-mark svg { display: block; }
+
+  /* ---- Nav ---- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  nav .wrap {
+    display: flex; align-items: center; justify-content: flex-end;
+    height: 76px;
+    position: relative;
+  }
+  .nav-name { font-weight: 800; font-size: 2.2rem; letter-spacing: -0.01em; line-height: 1; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.92rem; color: var(--text-dim); }
+  .nav-links a:hover { color: var(--olive); }
+  @media (max-width: 560px) { .nav-links { gap: 18px; font-size: 0.82rem; } }
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    padding: 100px 0 60px;
+    overflow: hidden;
+  }
+  .shape-container {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .parallax-shape {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.25s ease-out;
+    will-change: transform;
+  }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    display: flex; gap: 28px; flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .hero-meta span b { color: var(--text); font-weight: 400; }
+  .hero h1 {
+    position: relative;
+    font-size: clamp(2.1rem, 4.8vw, 4rem);
+    font-weight: 900;
+    line-height: 1.03;
+    letter-spacing: -0.02em;
+    max-width: 30ch;
+  }
+  .hero h1 .accent-line { color: var(--pink); }
+  .hero-sub {
+    position: relative;
+    margin-top: 28px;
+    max-width: 60ch;
+    font-size: 1.08rem;
+    color: var(--text-dim);
+  }
+  .hero-sub b { color: var(--text); font-weight: 600; }
+
+  /* ---- Companies strip ---- */
+  .companies-strip { padding: 32px 0 0; max-width: 60ch; }
+  .companies-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    opacity: 0.55;
+    margin-bottom: 14px;
+  }
+  .companies-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 48px;
+    align-items: center;
+  }
+  .companies-static {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px 56px;
+  }
+  .company-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--text-dim);
+    opacity: 0.4;
+    letter-spacing: -0.01em;
+    transition: opacity 0.2s ease;
+  }
+  .company-name:hover { opacity: 0.75; }
+  .company-logo {
+    height: 32px;
+    width: auto;
+    filter: grayscale(1);
+    opacity: 0.45;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+  }
+  .company-logo:hover { opacity: 0.85; filter: grayscale(0.3); }
+  /* small nudge up for the Apple logo */
+  .company-logo[alt="Apple"] { transform: translateY(-6%); }
+  @media (max-width: 640px) { .company-logo { height: 24px; } }
+  @media (max-width: 640px) {
+    .companies-row { gap: 20px 28px; }
+    .company-name { font-size: 1.05rem; }
+  }
+
+  /* ---- Craft strip ---- */
+  .craft-strip {
+    padding: 32px 0 60px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+  }
+  .craft-strip.visible {
+    max-height: 260px;
+    opacity: 1;
+  }
+  .craft-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .craft-scroll {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding-bottom: 6px;
+  }
+  .craft-scroll::-webkit-scrollbar { height: 6px; }
+  .craft-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .craft-item {
+    flex: 0 0 auto;
+    height: 190px;
+    width: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    scroll-snap-align: start;
+  }
+  @media (max-width: 640px) { .craft-item { height: 140px; } }
+
+  /* ---- Section label row ---- */
+  .section-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin-bottom: 34px;
+  }
+
+  /* ---- Info ---- */
+  .info { padding: 60px 0; border-top: 1px solid var(--line); position: relative; }
+  .info-grid {
+    display: grid; grid-template-columns: 200px 1fr; gap: 50px;
+  }
+  @media (max-width: 720px) { .info-grid { grid-template-columns: 1fr; gap: 20px; } }
+  .info p { font-size: 1.06rem; max-width: 62ch; margin-bottom: 16px; color: var(--text-dim); }
+  .info p b { color: var(--text); font-weight: 600; }
+  .info p:last-child { margin-bottom: 0; }
+
+  /* ---- Projects ---- */
+  .projects { padding: 40px 0 60px; position: relative; }
+  .proj-row {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    transition: padding-left 0.2s ease, color 0.2s ease;
+  }
+  .projects .proj-row:last-child { border-bottom: 1px solid var(--line); }
+  .proj-row:hover { padding-left: 10px; }
+  .proj-row:hover .proj-title { color: var(--olive); }
+  .proj-num { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
+  .proj-title {
+    font-size: clamp(1.7rem, 4.4vw, 2.9rem);
+    font-weight: 900;
+    letter-spacing: -0.015em;
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+  .proj-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-align: right;
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .proj-row { grid-template-columns: 1fr; gap: 6px; }
+    .proj-tag { text-align: left; }
+  }
+
+  .hover-thumb {
+    position: fixed;
+    top: 0; left: 0;
+    width: 520px;
+    height: 360px;
+    border-radius: 16px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-9999px, -9999px);
+    transition: opacity 0.18s ease;
+    z-index: 200;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+  .hover-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%);
+    pointer-events: none;
+  }
+  .hover-thumb.visible { opacity: 1; }
+  .hover-thumb-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 900px) { .hover-thumb { display: none; } }
+
+  /* ---- Other work ---- */
+  .other-work { padding: 20px 0 80px; position: relative; }
+  .other-band {
+    background: var(--bg-elevated);
+    border-radius: 18px;
+    padding: 44px 40px;
+    position: relative;
+  }
+  @media (max-width: 640px) { .other-band { padding: 32px 22px; } }
+  .other-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 30px;
+  }
+  @media (max-width: 720px) { .other-grid { grid-template-columns: 1fr; } }
+  .other-item { display: block; }
+  .other-thumb {
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid var(--line);
+  }
+  .other-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .other-thumb .placeholder-mark { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); }
+  .thumb-red { background: var(--red-soft); }
+  .thumb-olive { background: var(--olive-soft); }
+  .thumb-pink { background: rgba(232,120,158,0.14); }
+  .other-item-title { font-size: 0.96rem; font-weight: 700; }
+  .other-item-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-top: 3px; }
+
+  /* ---- Stats ---- */
+  .stats { padding: 70px 0; border-top: 1px solid var(--line); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+  }
+  @media (max-width: 780px) { .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 46px; } }
+  .stat-num {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--olive);
+    letter-spacing: -0.01em;
+  }
+  .stat-label {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    max-width: 22ch;
+  }
+
+  /* ---- Experience ---- */
+  .exp { padding: 70px 0; border-top: 1px solid var(--line); }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-row {
+    display: grid; grid-template-columns: 140px 1fr auto;
+    gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.98rem;
+  }
+  .exp-list .exp-row:last-child { border-bottom: 1px solid var(--line); }
+  .exp-date { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
+  .exp-role b { font-weight: 700; }
+  .exp-role span { color: var(--text-dim); }
+  .exp-loc { font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-dim); text-align: right; }
+  @media (max-width: 640px) {
+    .exp-row { grid-template-columns: 1fr; gap: 4px; }
+    .exp-loc { text-align: left; }
+  }
+
+  /* ---- Footer ---- */
+  footer { padding: 90px 0 60px; border-top: 1px solid var(--line); position: relative; }
+  .footer-cta {
+    font-size: clamp(1.4rem, 3.5vw, 2.52rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 34px;
+  }
+  .footer-links { display: flex; gap: 30px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.82rem; }
+  .footer-links a { color: var(--text-dim); border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .footer-links a:hover { color: var(--olive); border-color: var(--olive); }
+  .footer-bottom {
+    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim);
+  }
+
+  .shape-hero { top: 70px; right: -60px; width: 360px; height: 360px; opacity: 0.92; }
+  .shape-info { top: 55px; left: -50px; width: 200px; height: 200px; opacity: 0.18; }
+  .shape-projects { top: 60px; right: -30px; width: 190px; height: 190px; opacity: 0.15; }
+  .shape-other { top: 24px; right: 20px; width: 220px; height: 220px; opacity: 0.2; }
+  .shape-footer { top: 50px; left: -40px; width: 220px; height: 220px; opacity: 0.16; }
+  @media (max-width: 900px) {
+    .shape-hero { width: 230px; height: 230px; top: 40px; right: -40px; opacity: 0.55; }
+    .shape-info, .shape-projects, .shape-footer { display: none; }
+    .shape-other { width: 150px; height: 150px; top: 16px; right: 10px; opacity: 0.6; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .parallax-shape { transition: none; }
+  }
+
+  /* ---- Projects grid (new layout) ---- */
+  .projects-grid-section { padding: 20px 0 80px; }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 44px 32px;
+  }
+  .grid-card { display: block; text-decoration: none; color: inherit; }
+  .grid-thumb {
+    width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+    border-radius: 10px; background: var(--olive);
+  }
+  .grid-thumb-svg { overflow: hidden; }
+  .grid-meta { display: flex; justify-content: space-between; align-items: baseline; margin-top: 16px; gap: 12px; }
+  .grid-title { font-weight: 700; font-size: 1.08rem; letter-spacing: -0.01em; }
+  .grid-year { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); white-space: nowrap; }
+  .grid-sub { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); margin-top: 5px; }
+  .grid-card:hover .grid-title { color: var(--olive); }
+  .grid-card-disabled { cursor: default; opacity: 0.55; }
+  .grid-card-disabled:hover .grid-title { color: inherit; }
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" style="text-decoration:none; position:absolute; top:12px; left:40px; display:block; z-index:5;"><img src="assets/images/index-02.gif" alt="Esther Nam logo" style="height:91px; width:auto; display:block; margin-left:-16px;"></a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="https://drive.google.com/file/d/1ux4nKmttn9aeZPpS14UdUBK0GJoFvP1z/view" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+
+  <div class="wrap">
+    <h1>Hi I&rsquo;m <span class="accent-line">Esther</span></h1>
+    <p class="hero-sub">I&rsquo;m a product designer with a love of crafts. I also like to play music! Before product design, I was a <b>textile and multimedia designer</b>.</p>
+
+    <div class="companies-strip">
+      <div class="companies-static">
+        <img class="company-logo" src="assets/images/index-03.png" alt="Apple">
+        <img class="company-logo" style="height: 20px;" src="assets/images/index-04.png" alt="Meta">
+        <img class="company-logo" src="assets/images/index-05.png" alt="Alaska Airlines">
+        <img class="company-logo" src="assets/images/index-06.png" alt="Keurig Dr Pepper">
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="projects-grid-section" id="work">
+  <div class="wrap">
+    <div class="projects-grid">
+    <a class="grid-card" href="developer-tools.html"><div class="grid-thumb grid-thumb-logo" style="background:#fff; display:flex; align-items:center; justify-content:center;"><img src="assets/images/index-03.png" alt="Apple" style="width:15%; height:auto; display:block;" loading="lazy"></div>
+      <div class="grid-meta">
+        <div class="grid-title">Developer Tools</div>
+      </div>
+      <div class="grid-sub">Apple</div></a>
+    <a class="grid-card" href="vr-glasses.html"><img class="grid-thumb" src="assets/images/index-07.jpg" alt="Meta VR Glasses" loading="lazy">
+      <div class="grid-meta">
+        <div class="grid-title">Meta VR Glasses - Apps</div>
+      </div>
+      <div class="grid-sub">Meta Reality Labs</div></a>
+    <a class="grid-card" href="developer-platforms.html"><img class="grid-thumb" src="assets/images/index-08.jpg" alt="Developer Platforms" loading="lazy">
+      <div class="grid-meta">
+        <div class="grid-title">Developer Platforms</div>
+      </div>
+      <div class="grid-sub">Meta Reality Labs</div></a>
+    
+    <a class="grid-card" href="world-desktop-editor.html"><img class="grid-thumb" src="assets/images/index-09.jpg" alt="World Desktop Editor" loading="lazy">
+      <div class="grid-meta">
+        <div class="grid-title">World Desktop Editor</div>
+      </div>
+      <div class="grid-sub">Meta Reality Labs</div></a>
+    <a class="grid-card" href="quest-for-business.html"><img class="grid-thumb" src="assets/images/index-10.webp" alt="Meta Horizon Managed Services admin center on a laptop" loading="lazy">
+      <div class="grid-meta">
+        <div class="grid-title">Meta Horizon Managed Services</div>
+      </div>
+      <div class="grid-sub">Meta Reality Labs</div></a>
+    <a class="grid-card" href="flight-booking.html"><img class="grid-thumb" src="assets/images/index-11.jpg" alt="Flight Booking" loading="lazy">
+      <div class="grid-meta">
+        <div class="grid-title">Flight Booking</div>
+      </div>
+      <div class="grid-sub">Alaska Airlines</div></a>
+    <a class="grid-card" href="keurig.html"><img class="grid-thumb" src="assets/images/index-12.jpg" alt="Keurig Dr Pepper" loading="lazy">
+      <div class="grid-meta">
+        <div class="grid-title">Keurig Dr Pepper</div>
+        
+      </div>
+      <div class="grid-sub">Keurig Dr Pepper</div></a>
+    <a class="grid-card" href="bluesnap.html"><img class="grid-thumb" src="assets/images/index-13.webp" alt="BlueSnap Product Pages" loading="lazy"><div class="grid-meta"><div class="grid-title">BlueSnap Product Pages</div></div><div class="grid-sub">BlueSnap</div></a>
+    </div>
+  </div>
+</section>
+
+<section class="other-work">
+  <div class="wrap">
+    <div class="other-band">
+      <div class="section-label" style="margin-bottom: 0;">
+        &amp; MISC WORK
+      </div>
+      <div class="other-grid">
+        <a class="other-item" href="doodles.html">
+          <div class="other-thumb thumb-pink" style="background-image: url('assets/images/index-14.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+          <div class="other-item-title">Doodles</div>
+        </a>
+        <a class="other-item" href="textile-design.html">
+          <div class="other-thumb thumb-olive" style="background-image: url('assets/images/index-15.jpg'); background-size: cover; background-position: 85% center; background-repeat: no-repeat;"></div>
+          <div class="other-item-title">Textile Design</div>
+        </a>
+        <a class="other-item" href="set-design.html">
+          <div class="other-thumb thumb-red"><img src="assets/images/index-16.webp" alt="Carved, painted corner ornaments on a workshop table" loading="lazy"></div>
+          <div class="other-item-title">Set Design</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <div class="footer-cta"><a href="https://www.linkedin.com/in/esthernamhy/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Contact</a></div>
+    <div class="footer-links">
+      <a href="mailto:esthernamhy@gmail.com">esthernamhy@gmail.com</a>
+      <a href="https://www.linkedin.com/in/esthernamhy/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-bottom">
+      <span>ESTHER NAM</span>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var shapes = document.querySelectorAll('.parallax-shape');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !shapes.length) return;
+    window.addEventListener('mousemove', function(e) {
+      var xRatio = e.clientX / window.innerWidth - 0.5;
+      var yRatio = e.clientY / window.innerHeight - 0.5;
+      shapes.forEach(function(shape) {
+        var speed = parseFloat(shape.getAttribute('data-speed')) || 1;
+        var x = xRatio * 90 * speed;
+        var y = yRatio * 90 * speed;
+        var rot = xRatio * 8 * speed;
+        shape.style.transform = 'translate(' + x + 'px, ' + y + 'px) rotate(' + rot + 'deg)';
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

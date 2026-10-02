@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Doodles | Esther Nam</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF6EF;
+    --bg-elevated: #F1EAE0;
+    --text: #2E2820;
+    --text-dim: #6B6459;
+    --red: #C22A3E;
+    --olive: #6E7248;
+    --olive-soft: rgba(110,114,72,0.14);
+    --pink: #E8789E;
+    --line: rgba(26,23,20,0.14);
+    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'Space Mono', 'SF Mono', Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140F; --bg-elevated: #211C15; --text: #F5EFE4; --text-dim: #A79C8B;
+    --red: #E85D6E; --olive: #9CA173; --olive-soft: rgba(156,161,115,0.16);
+    --pink: #F0A2BE; --line: rgba(245,239,228,0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17140F; --bg-elevated: #211C15; --text: #F5EFE4; --text-dim: #A79C8B;
+      --red: #E85D6E; --olive: #9CA173; --olive-soft: rgba(156,161,115,0.16);
+      --pink: #F0A2BE; --line: rgba(245,239,228,0.16);
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-display); font-weight: 400; line-height: 1.5;
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--olive-soft); color: var(--text); }
+  :focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 720px) { .wrap { padding: 0 22px; } }
+
+  /* Nav */
+  nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); }
+  nav .wrap { display: flex; align-items: center; justify-content: flex-end; height: 76px; position: relative; }
+  .nav-logo { position: absolute; top: 12px; left: 40px; display: block; z-index: 5; }
+  .nav-logo img { height: 91px; width: auto; display: block; margin-left: -16px; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.92rem; color: var(--text-dim); }
+  .nav-links a:hover { color: var(--olive); }
+  @media (max-width: 720px) { .nav-logo { left: 22px; } }
+  @media (max-width: 560px) { .nav-links { gap: 18px; font-size: 0.82rem; } }
+
+  /* Hero */
+  .hero { padding: 70px 0 50px; }
+  .hero h1 { font-size: clamp(2.1rem, 4.8vw, 4rem); font-weight: 900; line-height: 1.03; letter-spacing: -0.02em; max-width: 24ch; }
+  .hero-former { margin-top: 14px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
+  .hero-sub { margin-top: 24px; max-width: 62ch; font-size: 1.08rem; color: var(--text-dim); }
+  .hero-image { margin-top: 48px; }
+  .hero-image img { width: 100%; height: auto; display: block; border-radius: 16px; }
+
+  /* Case study sections */
+  .section-label { display: block; font-family: var(--font-mono); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.1em; color: var(--text); margin-bottom: 34px; }
+  .info { padding: 60px 0; border-top: 1px solid var(--line); }
+  .info-grid { display: grid; grid-template-columns: 200px 1fr; gap: 50px; }
+  @media (max-width: 720px) { .info-grid { grid-template-columns: 1fr; gap: 20px; } }
+  .rail { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
+  .info p { font-size: 1.06rem; margin-bottom: 16px; color: var(--text-dim); }
+  .info p b { color: var(--text); font-weight: 600; }
+  .info p:last-child { margin-bottom: 0; }
+
+  .meta-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 28px; }
+  .meta-item dt { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-bottom: 6px; }
+  .meta-item dd { font-size: 1rem; font-weight: 600; }
+
+  /* Figures */
+  figure { margin-top: 8px; }
+  figure img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line); }
+  figcaption { margin-top: 12px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); }
+  .stage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  .stage-grid figure { margin-top: 0; }
+  .stage-grid .stage-wide { grid-column: 1 / -1; }
+  .stage-grid img { aspect-ratio: 4 / 3; object-fit: cover; }
+  .stage-grid .stage-wide img { aspect-ratio: 16 / 8; }
+  @media (max-width: 720px) {
+    .stage-grid { grid-template-columns: 1fr; }
+    .stage-grid .stage-wide img { aspect-ratio: 16 / 10; }
+  }
+  .video-figure video { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-elevated); }
+  .video-figure { margin: 28px 0 32px; }
+  .walkthrough { list-style: none; counter-reset: step; margin: 14px 0 22px; padding: 0; }
+  .walkthrough li { counter-increment: step; position: relative; padding: 0 0 0 40px; margin-bottom: 14px; font-size: 1.02rem; color: var(--text-dim); }
+  .walkthrough li::before { content: counter(step); position: absolute; left: 0; top: 2px; width: 26px; height: 26px; border-radius: 50%; background: var(--olive-soft); color: var(--olive); font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .walkthrough li b { color: var(--text); font-weight: 600; }
+  .placeholder-tag {
+    display: inline-block; margin-bottom: 14px; padding: 4px 10px; border-radius: 999px;
+    background: var(--olive-soft); color: var(--olive);
+    font-family: var(--font-mono); font-size: 0.7rem;
+  }
+
+  /* Footer */
+  footer { padding: 90px 0 60px; border-top: 1px solid var(--line); }
+  .footer-cta { font-size: clamp(1.4rem, 3.5vw, 2.52rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 34px; }
+  .footer-links { display: flex; gap: 30px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.82rem; }
+  .footer-links a { color: var(--text-dim); border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .footer-links a:hover { color: var(--olive); border-color: var(--olive); }
+  .footer-bottom { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  /* Doodles */
+  .doodle-hero { padding: 70px 0 30px; }
+  .doodle-hero h1 { font-size: clamp(2.1rem, 4.8vw, 4rem); font-weight: 900; line-height: 1.03; letter-spacing: -0.02em; }
+  .doodle-medium { margin-top: 18px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-dim); }
+  .doodle-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 30px 0 90px; }
+  @media (max-width: 720px) { .doodle-grid { grid-template-columns: 1fr; gap: 16px; } }
+  .doodle-grid figure { margin: 0; }
+  .doodle-grid img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: contain; background: #fff; border-radius: 12px; border: 1px solid var(--line); display: block; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="nav-logo" href="index.html"><img src="assets/images/logo.gif" alt="Esther Nam logo"></a>
+    <div class="nav-links">
+      <a href="index.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="https://drive.google.com/file/d/1ux4nKmttn9aeZPpS14UdUBK0GJoFvP1z/view" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+</nav>
+
+<header class="doodle-hero">
+  <div class="wrap">
+    <h1>Doodles</h1>
+    <p class="doodle-medium">Ballpoint ink, nail polish on Bristol paper</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="doodle-grid">
+      <figure><img src="assets/images/doodle-01.webp" alt="Pink nail polish shape with dense ballpoint ink hatching" width="1000" height="1000" loading="lazy"></figure>
+      <figure><img src="assets/images/doodle-02.webp" alt="Olive green nail polish shape with radiating ballpoint ink hatching" width="1143" height="1143" loading="lazy"></figure>
+      <figure><img src="assets/images/doodle-03.webp" alt="Red nail polish shape with a patch of glitter and ballpoint ink hatching" width="1157" height="1157" loading="lazy"></figure>
+      <figure><img src="assets/images/doodle-04.webp" alt="Maroon glitter nail polish blobs surrounded by ballpoint ink hatching" width="500" height="500" loading="lazy"></figure>
+      <figure><img src="assets/images/doodle-05.webp" alt="Pink glittery nail polish shape with a red drip, outlined in ballpoint ink" width="1400" height="1403" loading="lazy"></figure>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-cta"><a href="https://www.linkedin.com/in/esthernamhy/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Contact</a></div>
+    <div class="footer-links">
+      <a href="mailto:esthernamhy@gmail.com">esthernamhy@gmail.com</a>
+      <a href="https://www.linkedin.com/in/esthernamhy/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-bottom">
+      <span>ESTHER NAM</span>
+      <span>&copy; 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

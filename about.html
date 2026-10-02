@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About | Esther Nam</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF6EF;
+    --bg-elevated: #F1EAE0;
+    --text: #2E2820;
+    --text-dim: #6B6459;
+    --red: #C22A3E;
+    --red-soft: rgba(194,42,62,0.12);
+    --olive: #6E7248;
+    --olive-soft: rgba(110,114,72,0.14);
+    --pink: #E8789E;
+    --maroon: #7A2A34;
+    --chain: #B8935A;
+    --chain-soft: rgba(184,147,90,0.35);
+    --line: rgba(26,23,20,0.14);
+    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'Space Mono', 'SF Mono', Consolas, monospace;
+    --accent: var(--olive);
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140F;
+    --bg-elevated: #211C15;
+    --text: #F5EFE4;
+    --text-dim: #A79C8B;
+    --red: #E85D6E;
+    --red-soft: rgba(232,93,110,0.16);
+    --olive: #9CA173;
+    --olive-soft: rgba(156,161,115,0.16);
+    --pink: #F0A2BE;
+    --maroon: #B5545F;
+    --chain: #D4A868;
+    --chain-soft: rgba(212,168,104,0.35);
+    --line: rgba(245,239,228,0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17140F;
+      --bg-elevated: #211C15;
+      --text: #F5EFE4;
+      --text-dim: #A79C8B;
+      --red: #E85D6E;
+      --red-soft: rgba(232,93,110,0.16);
+      --olive: #9CA173;
+      --olive-soft: rgba(156,161,115,0.16);
+      --pink: #F0A2BE;
+      --maroon: #B5545F;
+      --chain: #D4A868;
+      --chain-soft: rgba(212,168,104,0.35);
+      --line: rgba(245,239,228,0.16);
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--olive-soft); color: var(--text); }
+  :focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 720px) { .wrap { padding: 0 22px; } }
+
+  /* ---- ink mark motif (original abstract mark, not a copy of any specific artwork) ---- */
+  .ink-mark { display: inline-block; flex-shrink: 0; }
+  .ink-mark svg { display: block; }
+
+  /* ---- Nav ---- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  nav .wrap {
+    display: flex; align-items: center; justify-content: flex-end;
+    height: 76px;
+    position: relative;
+  }
+  .nav-name { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.92rem; color: var(--text-dim); }
+  .nav-links a:hover { color: var(--olive); }
+  @media (max-width: 560px) { .nav-links { gap: 18px; font-size: 0.82rem; } }
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    padding: 100px 0 80px;
+  }
+  .shape-container {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .parallax-shape {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.25s ease-out;
+    will-change: transform;
+  }
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    display: flex; gap: 28px; flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .hero-meta span b { color: var(--text); font-weight: 400; }
+  .hero h1 {
+    position: relative;
+    font-size: clamp(2.1rem, 4.8vw, 4rem);
+    font-weight: 900;
+    line-height: 1.03;
+    letter-spacing: -0.02em;
+    max-width: 30ch;
+  }
+  .hero h1 .accent-line { color: var(--olive); }
+  .hero-sub {
+    position: relative;
+    margin-top: 28px;
+    max-width: 60ch;
+    font-size: 1.08rem;
+    color: var(--text-dim);
+  }
+  .hero-sub b { color: var(--text); font-weight: 600; }
+
+  /* ---- Craft strip ---- */
+  .craft-strip { padding: 0 0 60px; }
+  .craft-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .craft-scroll {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding-bottom: 6px;
+  }
+  .craft-scroll::-webkit-scrollbar { height: 6px; }
+  .craft-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .craft-item {
+    flex: 0 0 auto;
+    height: 190px;
+    width: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    scroll-snap-align: start;
+  }
+  @media (max-width: 640px) { .craft-item { height: 140px; } }
+
+  /* ---- Section label row ---- */
+  .section-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin-bottom: 34px;
+  }
+
+  /* ---- Info ---- */
+  .info { padding: 60px 0; border-top: 1px solid var(--line); position: relative; }
+  .info-grid {
+    display: grid; grid-template-columns: 200px 1fr; gap: 50px;
+  }
+  @media (max-width: 720px) { .info-grid { grid-template-columns: 1fr; gap: 20px; } }
+  .info p { font-size: 1.06rem; margin-bottom: 16px; color: var(--text-dim); }
+  .info p b { color: var(--text); font-weight: 600; }
+  .info p:last-child { margin-bottom: 0; }
+
+  /* ---- Projects ---- */
+  .projects { padding: 40px 0 60px; position: relative; border-top: 1px solid var(--line); }
+  .proj-row {
+    display: grid; grid-template-columns: 90px 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    transition: padding-left 0.2s ease, color 0.2s ease;
+  }
+  .projects .proj-row:last-child { border-bottom: 1px solid var(--line); }
+  .proj-row:hover { padding-left: 10px; }
+  .proj-row:hover .proj-title { color: var(--olive); }
+  .proj-num { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
+  .proj-title {
+    font-size: clamp(1.7rem, 4.4vw, 2.9rem);
+    font-weight: 900;
+    letter-spacing: -0.015em;
+    line-height: 1;
+    transition: color 0.2s ease;
+  }
+  .proj-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-align: right;
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .proj-row { grid-template-columns: 1fr; gap: 6px; }
+    .proj-tag { text-align: left; }
+  }
+
+  /* ---- Other work ---- */
+  .other-work { padding: 20px 0 80px; position: relative; }
+  .other-band {
+    background: var(--bg-elevated);
+    border-radius: 18px;
+    padding: 44px 40px;
+    position: relative;
+  }
+  @media (max-width: 640px) { .other-band { padding: 32px 22px; } }
+  .other-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 30px;
+  }
+  @media (max-width: 720px) { .other-grid { grid-template-columns: 1fr; } }
+  .other-item { display: block; }
+  .other-thumb {
+    aspect-ratio: 4/3;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid var(--line);
+  }
+  .other-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .other-thumb .placeholder-mark { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); }
+  .thumb-red { background: var(--red-soft); }
+  .thumb-olive { background: var(--olive-soft); }
+  .thumb-pink { background: rgba(232,120,158,0.14); }
+  .other-item-title { font-size: 0.96rem; font-weight: 700; }
+  .other-item-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-top: 3px; }
+
+  /* ---- Stats ---- */
+  .stats { padding: 70px 0; border-top: 1px solid var(--line); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+  }
+  @media (max-width: 780px) { .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 46px; } }
+  .stat-num {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: var(--olive);
+    letter-spacing: -0.01em;
+  }
+  .stat-label {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    max-width: 22ch;
+  }
+
+  /* ---- Experience ---- */
+  .exp { padding: 70px 0; border-top: 1px solid var(--line); }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-row {
+    display: grid; grid-template-columns: 140px 1fr auto;
+    gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.98rem;
+  }
+  .exp-list .exp-row:last-child { border-bottom: 1px solid var(--line); }
+  .exp-date { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
+  .exp-role b { font-weight: 700; }
+  .exp-role span { color: var(--text-dim); }
+  .exp-loc { font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-dim); text-align: right; }
+  @media (max-width: 640px) {
+    .exp-row { grid-template-columns: 1fr; gap: 4px; }
+    .exp-loc { text-align: left; }
+  }
+
+  /* ---- Footer ---- */
+  footer { padding: 90px 0 60px; border-top: 1px solid var(--line); position: relative; }
+  .footer-cta {
+    font-size: clamp(1.4rem, 3.5vw, 2.52rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 34px;
+  }
+  .footer-links { display: flex; gap: 30px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.82rem; }
+  .footer-links a { color: var(--text-dim); border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .footer-links a:hover { color: var(--olive); border-color: var(--olive); }
+  .footer-bottom {
+    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim);
+  }
+
+  .shape-hero { top: 70px; right: -60px; width: 360px; height: 360px; opacity: 0.92; }
+  .shape-info { top: 55px; left: -50px; width: 200px; height: 200px; opacity: 0.55; }
+  .shape-projects { top: 60px; right: -30px; width: 190px; height: 190px; opacity: 0.4; }
+  .shape-other { top: 24px; right: 20px; width: 220px; height: 220px; opacity: 0.85; }
+  .shape-footer { top: 50px; left: -40px; width: 220px; height: 220px; opacity: 0.5; }
+  @media (max-width: 900px) {
+    .shape-hero { width: 230px; height: 230px; top: 40px; right: -40px; opacity: 0.55; }
+    .shape-info, .shape-projects, .shape-footer { display: none; }
+    .shape-other { width: 150px; height: 150px; top: 16px; right: 10px; opacity: 0.6; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .parallax-shape { transition: none; }
+  }
+
+  /* Collage */
+  .collage { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 22px; margin-top: 34px; align-items: start; }
+  .collage figure { margin: 0; }
+  .collage img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line); aspect-ratio: 3 / 4; object-fit: cover; }
+  .collage figure:nth-child(odd) { transform: rotate(-1.6deg); }
+  .collage figure:nth-child(even) { transform: rotate(1.4deg); margin-top: 14px; }
+  @media (max-width: 560px) { .collage { grid-template-columns: 1fr 1fr; gap: 14px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" style="text-decoration:none; position:absolute; top:12px; left:40px; display:block; z-index:5;"><img src="assets/images/index-02.gif" alt="Esther Nam logo" style="height:91px; width:auto; display:block; margin-left:-16px;"></a>
+    <div class="nav-links">
+      <a href="index.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="https://drive.google.com/file/d/1ux4nKmttn9aeZPpS14UdUBK0GJoFvP1z/view" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" style="padding-bottom: 20px;">
+  <div class="wrap">
+    <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;">
+      <div>
+        <h1 style="max-width: 26ch;">Craft first, product design second.</h1>
+        <p class="hero-sub" style="max-width: 60ch;">A textile, visual, and multimedia designer by training. A product designer by career. The two have never really been separate.</p>
+      </div>
+      <img src="assets/images/about-01.jpg" alt="Esther at a Miffy bakery in Japan" style="width:100%; border-radius:16px; display:block; object-fit:cover; aspect-ratio: 4/5;">
+    </div>
+  </div>
+</header>
+
+<section class="info">
+  <div class="wrap">
+    <div class="section-label">
+      ABOUT
+    </div>
+    <div class="info-grid">
+      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim);">01 - BACKGROUND</div>
+      <div>
+        <p>I started as a textile, visual, and multimedia designer, screen printing patterns, throwing ceramics, drawing from observation, working on set design and fabrication. That training shaped how I think about every product I've touched since: material, color, proportion, and the feeling of something considered.</p>
+        <p>I moved into product design because I wanted that same care to show up in software. Since then I've spent my career building <b>developer platforms</b> and <b>enterprise systems</b>, the unglamorous infrastructure that teams rely on every day. I care about craft at the level of pixels and interaction just as much as I once cared about it at the level of thread and clay.</p>
+        <p>Over the past year I've also built an AI-native workflow that lets me take a product from spec to shipped code independently, closing the gap between an idea and something real.</p>
+        <p>If you're curious to know more about my current approach to my design process, <a href="https://claude.ai/artifact/QTctmthUyNuvqsqxS1vSpm" style="color: inherit; text-decoration: underline;">read here</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="info" style="border-top: 1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-label">
+      ELSEWHERE
+    </div>
+    <div class="info-grid">
+      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim);">02 - OUTSIDE WORK</div>
+      <div>
+        <p>Outside work: I play melodica and busk at the park. I also collect plushies with a level of commitment that occasionally surprises me.</p>
+        <div class="collage">
+          <figure><img src="assets/images/about-02.jpg" alt="A red Yamaha melodica resting on a lap, on a lawn" loading="lazy"></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-cta"><a href="https://www.linkedin.com/in/esthernamhy/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Contact</a></div>
+    <div class="footer-links">
+      <a href="mailto:esthernamhy@gmail.com">esthernamhy@gmail.com</a>
+      <a href="https://www.linkedin.com/in/esthernamhy/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-bottom">
+      <span>ESTHER NAM</span>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
