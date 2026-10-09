@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <title>World Desktop Editor | Esther Nam</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Esther Nam is a product designer with a fine arts background, specializing in hardware, B2B, and developer tooling.">
+<meta property="og:title" content="World Desktop Editor | Esther Nam">
+<meta property="og:description" content="Esther Nam is a product designer with a fine arts background, specializing in hardware, B2B, and developer tooling.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://esther8509.github.io/esther-nam-portfolio/assets/images/index-10.webp">
+<meta property="og:image:alt" content="Meta Horizon Managed Services admin center on a laptop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +78,6 @@
     line-height: 1.5;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: url("assets/images/index-01.svg") 30 30, auto;
   }
   a { color: inherit; text-decoration: none; }
   ::selection { background: var(--olive-soft); color: var(--text); }
@@ -451,9 +458,13 @@
   .case-meta dt { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); margin-bottom: 6px; }
   .case-meta dd { font-size: 1rem; font-weight: 600; color: var(--text); margin: 0; }
   @media (max-width: 720px) { .case-grid { grid-template-columns: 1fr; gap: 20px; } .case-grid > div:empty { display: none; } }
+  body { cursor: url("assets/images/cursor-dot.svg") 6 6, auto; }
+  .skip-link { position: absolute; left: 12px; top: -64px; z-index: 100; background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; text-decoration: none; }
+  .skip-link:focus { top: 12px; }
 </style>
 
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <nav>
   <div class="wrap">
     <a href="index.html" style="text-decoration:none; position:absolute; top:12px; left:40px; display:block; z-index:5;"><img src="assets/images/index-02.gif" alt="Esther Nam logo" style="height:91px; width:auto; display:block; margin-left:-16px;"></a>
@@ -465,7 +476,7 @@
   </div>
 </nav>
 
-<header class="case-hero">
+<header id="main" class="case-hero">
   <div class="wrap">
     <h1>World Desktop Editor</h1>
     <p class="case-sub">Meta's AI-powered tool for building immersive worlds in Horizon.</p>
@@ -524,7 +535,7 @@
 <section style="border-top: 1px solid var(--line); padding: 30px 0;">
   <div class="wrap" style="display:flex; justify-content:space-between; font-family: var(--font-mono); font-size: 0.85rem;">
     <a href="developer-platforms.html" style="color:var(--text-dim); text-decoration:none;">&larr; Developer Platforms &middot; Meta</a>
-    <a href="flight-booking.html" style="color:var(--text-dim); text-decoration:none;">Alaska Airlines &rarr;</a>
+    <a href="quest-for-business.html" style="color:var(--text-dim); text-decoration:none;">Meta Horizon Managed Services &rarr;</a>
   </div>
 </section>
 

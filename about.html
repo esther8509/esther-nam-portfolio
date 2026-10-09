@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <title>About | Esther Nam</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Esther Nam is a product designer with a fine arts background, specializing in hardware, B2B, and developer tooling.">
+<meta property="og:title" content="About | Esther Nam">
+<meta property="og:description" content="Esther Nam is a product designer with a fine arts background, specializing in hardware, B2B, and developer tooling.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://esther8509.github.io/esther-nam-portfolio/assets/images/index-10.webp">
+<meta property="og:image:alt" content="Meta Horizon Managed Services admin center on a laptop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -333,9 +341,13 @@
   .collage figure:nth-child(odd) { transform: rotate(-1.6deg); }
   .collage figure:nth-child(even) { transform: rotate(1.4deg); margin-top: 14px; }
   @media (max-width: 560px) { .collage { grid-template-columns: 1fr 1fr; gap: 14px; } }
+  body { cursor: url("assets/images/cursor-dot.svg") 6 6, auto; }
+  .skip-link { position: absolute; left: 12px; top: -64px; z-index: 100; background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; text-decoration: none; }
+  .skip-link:focus { top: 12px; }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav>
   <div class="wrap">
@@ -348,7 +360,7 @@
   </div>
 </nav>
 
-<header class="hero" style="padding-bottom: 20px;">
+<header id="main" class="hero" style="padding-bottom: 20px;">
   <div class="wrap">
     <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;">
       <div>
