@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <title>Esther Nam | Product Designer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Esther Nam is a product designer with a fine arts background, specializing in hardware, B2B, and developer tooling.">
+<meta property="og:title" content="Esther Nam | Product Designer">
+<meta property="og:description" content="Esther Nam is a product designer with a fine arts background, specializing in hardware, B2B, and developer tooling.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://esther8509.github.io/esther-nam-portfolio/assets/images/index-10.webp">
+<meta property="og:image:alt" content="Meta Horizon Managed Services admin center on a laptop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +78,6 @@
     line-height: 1.5;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: url("assets/images/index-01.svg") 30 30, auto;
   }
   a { color: inherit; text-decoration: none; }
   ::selection { background: var(--olive-soft); color: var(--text); }
@@ -142,6 +149,19 @@
     color: var(--text-dim);
   }
   .hero-sub b { color: var(--text); font-weight: 600; }
+
+  /* ---- Statement hero: one sentence, one size, "Esther Nam" highlighted ---- */
+  .hero--statement h1 {
+    font-size: clamp(1.1rem, 2.5vw, 2.2rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    max-width: 42ch;
+  }
+  .hero--statement mark {
+    background: var(--pink); color: #fff;
+    padding: 0 0.18em; margin: 0 -0.04em; border-radius: 0.12em;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
 
   /* ---- Companies strip ---- */
   .companies-strip { padding: 32px 0 0; max-width: 60ch; }
@@ -450,9 +470,13 @@
     .projects-grid { grid-template-columns: 1fr; }
   }
 
+  body { cursor: url("assets/images/cursor-dot.svg") 6 6, auto; }
+  .skip-link { position: absolute; left: 12px; top: -64px; z-index: 100; background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; text-decoration: none; }
+  .skip-link:focus { top: 12px; }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav>
   <div class="wrap">
@@ -465,11 +489,10 @@
   </div>
 </nav>
 
-<header class="hero">
+<header id="main" class="hero hero--statement">
 
   <div class="wrap">
-    <h1>Hi I&rsquo;m <span class="accent-line">Esther</span></h1>
-    <p class="hero-sub">Product designer with a background in textiles and fine arts, specializing in hardware, B2B, and developer tooling.</p>
+    <h1><mark>Esther Nam</mark> is a senior product designer with a fine arts background, specializing in hardware, B2B, and developer tooling.</h1>
 
     <div class="companies-strip">
       <div class="companies-label">WORKED WITH</div>
@@ -491,18 +514,18 @@
         <div class="grid-title">Developer Tools</div>
       </div>
       <div class="grid-sub">Apple</div></a>
-    <a class="grid-card" href="vr-glasses.html"><img class="grid-thumb" src="assets/images/index-07.jpg" alt="Meta VR Glasses" loading="lazy">
+    <a class="grid-card" href="vr-glasses.html"><img class="grid-thumb" src="assets/images/index-07.jpg" alt="" loading="lazy">
       <div class="grid-meta">
         <div class="grid-title">Meta VR Glasses - Apps</div>
       </div>
       <div class="grid-sub">Meta Reality Labs</div></a>
-    <a class="grid-card" href="developer-platforms.html"><img class="grid-thumb" src="assets/images/index-08.jpg" alt="Developer Platforms" loading="lazy">
+    <a class="grid-card" href="developer-platforms.html"><img class="grid-thumb" src="assets/images/index-08.jpg" alt="" loading="lazy">
       <div class="grid-meta">
         <div class="grid-title">Developer Platforms</div>
       </div>
       <div class="grid-sub">Meta Reality Labs</div></a>
     
-    <a class="grid-card" href="world-desktop-editor.html"><img class="grid-thumb" src="assets/images/index-09.jpg" alt="World Desktop Editor" loading="lazy">
+    <a class="grid-card" href="world-desktop-editor.html"><img class="grid-thumb" src="assets/images/index-09.jpg" alt="" loading="lazy">
       <div class="grid-meta">
         <div class="grid-title">World Desktop Editor</div>
       </div>
@@ -512,18 +535,18 @@
         <div class="grid-title">Meta Horizon Managed Services</div>
       </div>
       <div class="grid-sub">Meta Reality Labs</div></a>
-    <a class="grid-card" href="flight-booking.html"><img class="grid-thumb" src="assets/images/index-11.jpg" alt="Flight Booking" loading="lazy">
+    <a class="grid-card" href="flight-booking.html"><img class="grid-thumb" src="assets/images/index-11.jpg" alt="" loading="lazy">
       <div class="grid-meta">
         <div class="grid-title">Flight Booking</div>
       </div>
       <div class="grid-sub">Alaska Airlines</div></a>
-    <a class="grid-card" href="keurig.html"><img class="grid-thumb" src="assets/images/index-12.jpg" alt="Keurig Dr Pepper" loading="lazy">
+    <a class="grid-card" href="keurig.html"><img class="grid-thumb" src="assets/images/index-12.jpg" alt="" loading="lazy">
       <div class="grid-meta">
         <div class="grid-title">Keurig Dr Pepper</div>
         
       </div>
       <div class="grid-sub">Keurig Dr Pepper</div></a>
-    <a class="grid-card" href="bluesnap.html"><img class="grid-thumb" src="assets/images/index-13.webp" alt="BlueSnap Product Pages" loading="lazy"><div class="grid-meta"><div class="grid-title">BlueSnap Product Pages</div></div><div class="grid-sub">BlueSnap</div></a>
+    <a class="grid-card" href="bluesnap.html"><img class="grid-thumb" src="assets/images/index-13.webp" alt="" loading="lazy"><div class="grid-meta"><div class="grid-title">BlueSnap Product Pages</div></div><div class="grid-sub">BlueSnap</div></a>
     </div>
   </div>
 </section>
