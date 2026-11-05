@@ -341,6 +341,10 @@
   .collage figure:nth-child(odd) { transform: rotate(-1.6deg); }
   .collage figure:nth-child(even) { transform: rotate(1.4deg); margin-top: 14px; }
   @media (max-width: 560px) { .collage { grid-template-columns: 1fr 1fr; gap: 14px; } }
+  .about-hero { padding-bottom: 70px; }
+  .about-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  .collage.collage-two { grid-template-columns: 1fr 1fr; margin-top: 0; }
+  @media (max-width: 720px) { .about-hero-grid { grid-template-columns: 1fr; gap: 36px; } }
   body { cursor: url("assets/images/cursor-dot.svg") 6 6, auto; }
   .skip-link { position: absolute; left: 12px; top: -64px; z-index: 100; background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; text-decoration: none; }
   .skip-link:focus { top: 12px; }
@@ -360,51 +364,22 @@
   </div>
 </nav>
 
-<header id="main" class="hero" style="padding-bottom: 20px;">
+<header id="main" class="hero about-hero">
   <div class="wrap">
-    <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;">
+    <div class="about-hero-grid">
       <div>
-        <h1 style="max-width: 26ch;">Craft first, product design second.</h1>
-        <p class="hero-sub" style="max-width: 60ch;">A textile, visual, and multimedia designer by training. A product designer by career. The two have never really been separate.</p>
+        <h1>Hi, I&rsquo;m Esther</h1>
+        <p class="hero-sub">I'm a staff product designer with a focus on hardware, enterprise systems, and developer tools.</p>
+        <p class="hero-sub" style="margin-top: 18px;">For ten years I've worked across form factors, from airline kiosks and coffee machines to mixed reality glasses. Lately I design and ship with AI, from concept to running code on the device.</p>
+        <p class="hero-sub" style="margin-top: 18px;">With a fine arts background in textiles, I've always loved tactile materials, and that became a love of physical interaction: hardware UI, voice, and gestures.</p>
       </div>
-      <img src="assets/images/about-01.jpg" alt="Esther at a Miffy bakery in Japan" style="width:100%; border-radius:16px; display:block; object-fit:cover; aspect-ratio: 4/5;">
+      <div class="collage collage-two">
+        <figure><img src="assets/images/about-01.jpg" alt="Esther at a Miffy bakery in Japan" width="1100" height="1253"></figure>
+        <figure><img src="assets/images/about-02.jpg" alt="A red Yamaha melodica resting on a lap, on a lawn" width="900" height="1199"></figure>
+      </div>
     </div>
   </div>
 </header>
-
-<section class="info">
-  <div class="wrap">
-    <div class="section-label">
-      ABOUT
-    </div>
-    <div class="info-grid">
-      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim);">01 - BACKGROUND</div>
-      <div>
-        <p>I started as a textile, visual, and multimedia designer, screen printing patterns, throwing ceramics, drawing from observation, working on set design and fabrication. That training shaped how I think about every product I've touched since: material, color, proportion, and the feeling of something considered.</p>
-        <p>I moved into product design because I wanted that same care to show up in software. Since then I've spent my career building <b>developer platforms</b> and <b>enterprise systems</b>, the unglamorous infrastructure that teams rely on every day. I care about craft at the level of pixels and interaction just as much as I once cared about it at the level of thread and clay.</p>
-        <p>Over the past year I've also built an AI-native workflow that lets me take a product from spec to shipped code independently, closing the gap between an idea and something real.</p>
-        <p>If you're curious to know more about my current approach to my design process, <a href="https://claude.ai/artifact/QTctmthUyNuvqsqxS1vSpm" style="color: inherit; text-decoration: underline;">read here</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="info" style="border-top: 1px solid var(--line);">
-  <div class="wrap">
-    <div class="section-label">
-      ELSEWHERE
-    </div>
-    <div class="info-grid">
-      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim);">02 - OUTSIDE WORK</div>
-      <div>
-        <p>Outside work: I play melodica and busk at the park. I also collect plushies with a level of commitment that occasionally surprises me.</p>
-        <div class="collage">
-          <figure><img src="assets/images/about-02.jpg" alt="A red Yamaha melodica resting on a lap, on a lawn" loading="lazy"></figure>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
